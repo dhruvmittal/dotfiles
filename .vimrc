@@ -24,9 +24,7 @@ noremap gp "+p
 set mouse=a
 
 set background=dark 
-"color mango
-"colorscheme darkburn
-colorscheme zenburn
+color mango
 syntax on
 set t_Co=256
 set nocompatible
@@ -93,5 +91,4 @@ command! Q q
 "Disable that stupid fucking beeping everytime you try to go past the end of a line
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
-
 
