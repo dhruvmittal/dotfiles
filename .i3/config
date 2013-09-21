@@ -10,25 +10,31 @@
 
 #On Startup, enable gnome-settings-daemon,compositing, dropbox, synapse, mpd(scrobbling)
 #exec gnome-settings-daemon
-exec killall notification-daemon
-exec dunst
-exec xcompmgr -c -C 
-exec synapse
+#exec gnome-session
+exec compton -cCfF #-i .9
 exec dropbox start
-#xinput set-prop 13 303 -111 -111
+exec nitrogen --restore 
+exec volumeicon
 #exec mpd
+#exec mopidy
 #exec mpdscribble
+#exec xfce4-power-manager
 
 #set the modifier key to be <Super>
 set $mod Mod4
-
 
 # font for window titles. ISO 10646 = Unicode
 font pango:Inconsolata for Powerline Medium 11
 
 #set colors 
 # class                 border  backgr. text    indicator
-client.focused          #202020 #8916C3 #ffffff #8916C3
+# turns things purple. You like purple, dhruv. 
+#client.focused          #202020 #8916C3 #ffffff #8916C3
+
+# remove borders from applications that don't need borders
+for_window [class="Synapse"] border none
+for_window [class="Screenkey" instance="screenkey"] floating enable
+for_window [class="Hangouts" instance="Hangouts"] floating enable
 
 
 #Set up scratchpad
@@ -43,7 +49,7 @@ bindsym $mod+minus scratchpad show
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+bindsym $mod+Return exec sakura #gnome-terminal #i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+Q kill
@@ -51,13 +57,24 @@ bindsym $mod+Shift+Q kill
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run -fn "Inconsolata for Powerline Medium-10"
 
+#set brightness controls
+#bindsym XF86MonBrightnessUp exec xbacklight -inc 10
+#bindsym XF86MonBrightnessDown exec xbacklight -dec 10
+
+
+# implement mpc controls
+#bindsym XF86AudioPrev exec mpc prev
+#bindsym XF86AudioNext exec mpc next
+#bindsym XF86AudioPlay exec mpc toggle
+
+# implement special keys
+bindsym Print exec scrot
+bindsym XF86ScreenSaver exec i3lock -c 000000
+bindsym $mod+Shift+Escape exec i3lock -c 000000
+
+
 # change focus
 # DEFAULT KEYBINDINGS COMMENTED OUT
-#bindsym $mod+j focus left
-#bindsym $mod+k focus down
-#bindsym $mod+l focus up
-#bindsym $mod+semicolon focus right
-#
 #NEW KEYBINDINGS TO VIM STANDARD
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -71,10 +88,6 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-#bindsym $mod+Shift+J move left
-#bindsym $mod+Shift+K move down
-#bindsym $mod+Shift+L move up
-#bindsym $mod+Shift+colon move right
 #CHANGE THESE TO VIM KEYBINDINGS TOO
 bindsym $mod+Shift+H move left
 bindsym $mod+Shift+J move down
@@ -106,7 +119,7 @@ bindsym $mod+e layout default
 bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+#bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -153,7 +166,7 @@ workspace_auto_back_and_forth no
 
 #Hide those stupid vertical borders
 #hide_edge_borders vertical
-#hide_edge_borders both 
+#hide_edge_borders both
 new_window pixel 2
 
 # resize window (you can also use the mouse for that)
@@ -164,11 +177,6 @@ mode "resize" {
         # Pressing right will grow the window’s width.
         # Pressing up will shrink the window’s height.
         # Pressing down will grow the window’s height.
-        #bindsym j resize shrink width 10 px or 10 ppt
-        #bindsym k resize grow height 10 px or 10 ppt
-        #bindsym l resize shrink height 10 px or 10 ppt
-        #bindsym semicolon resize grow width 10 px or 10 ppt
-
 	#Redo resize bindings, but with vim keybindings.
 	bindsym h resize shrink width 10 px or 10 ppt
         bindsym j resize grow height 10 px or 10 ppt
@@ -193,12 +201,13 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         status_command i3status
-	position	bottom
+	position	top
 	mode		dock	
-	tray_output 	primary
+	tray_output 	DP-0
 	colors {
 		background #202020
  	#	colorclass 	<border> <background> <text>
-         	focused_workspace  #161616 #8916c3 #ffffff
+		#Turns things purple: 
+                 #focused_workspace  #161616 #8916c3 #ffffff
 	}
 }     
