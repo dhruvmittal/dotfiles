@@ -6,6 +6,7 @@ function! ToggleRelNumbers()
 	set invrelativenumber
 endfunction
 
+set number
 set relativenumber
 
 nnoremap <F2> :call ToggleNumbers()<CR>
@@ -17,7 +18,7 @@ vnoremap <F1> <esc>:call ToggleRelNumbers()<CR>
 
 set hlsearch
 
-set gfn=Inconsolata\ for\ Powerline\ Medium\ 13
+set gfn=Source\ code\ pro\ for\ Powerline\ 13
 nnoremap yy yy"+yy
 vnoremap y ygv"+y
 noremap gp "+p
@@ -25,6 +26,7 @@ set mouse=a
 
 set background=dark 
 color mango
+"colorscheme darkburn
 syntax on
 set t_Co=256
 set nocompatible
@@ -39,7 +41,6 @@ call pathogen#infect()
 Bundle 'gmarik/vundle'
 "My Bundles here:
 Bundle 'Valloric/YouCompleteMe'
-"Bundle 'jcf/vim-latex' DON'T NEED THIS FOR FACEBOOK, probably. RE-ENABLE FOR PHYSICS
 Bundle 'kien/ctrlp.vim'
 
 filetype plugin indent on "required
@@ -61,7 +62,6 @@ let g:tex_flavor='latex'
 "Settings for powerline
 set laststatus=2 "Always show the statusline
 set encoding=utf-8 "Necessary to show Unicode glyphs
-set t_Co=256
 let g:Powerline_symbols = 'fancy'
 
 "exclude mp3 files from command t or control P
@@ -73,6 +73,8 @@ let mapleader = ","
 nnoremap <Leader>w :w<Cr>
 nnoremap <Leader>q :q<Cr>
 nnoremap <Leader>wq :wq<Cr>
+nnoremap <Leader>x :noh<Cr>
+inoremap <Leader>x :noh<Cr>
 
 " Splits and Split Manipulations
 set splitbelow
@@ -92,3 +94,14 @@ command! Q q
 set noerrorbells visualbell t_vb=
 autocmd GUIEnter * set visualbell t_vb=
 
+"Youcompleteme options
+let g:ycm_filetype_whitelist = { '*': 1 }
+let g:ycm_complete_in_comments = 1
+let g:ycm_confirm_extra_conf = 0
+
+"Simplenote options
+let g:SimplenoteUsername = "dhruvmittal@outlook.com"
+let g:SimplenotePassword = "e4tm3:n0w"
+command S Simplenote -l
+command Todo Simplenote -o TODO
+nnoremap <F9> :Simplenote -l<CR>
