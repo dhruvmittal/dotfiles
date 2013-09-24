@@ -101,7 +101,7 @@ let g:ycm_confirm_extra_conf = 0
 
 "Simplenote options
 let g:SimplenoteUsername = "dhruvmittal@outlook.com"
-let g:SimplenotePassword = "e4tm3:n0w"
+let g:SimplenotePassword = "changethispassword"
 command S Simplenote -l
 command Todo Simplenote -o TODO
 nnoremap <F9> :Simplenote -l<CR>
