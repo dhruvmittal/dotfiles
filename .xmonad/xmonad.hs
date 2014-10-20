@@ -56,7 +56,9 @@ conf = ewmh defaultConfig
 
 	--  CycleWS stuff
 	, ((mod4Mask,               xK_Right),  removeEmptyWorkspaceAfter(nextWS))
-	, ((mod4Mask,              xK_Left),   removeEmptyWorkspaceAfter( prevWS))
+	, ((mod4Mask,               xK_Left),   removeEmptyWorkspaceAfter( prevWS))
+	, ((mod4Mask .|. shiftMask, xK_l),  removeEmptyWorkspaceAfter(nextWS))
+	, ((mod4Mask .|. shiftMask, xK_h),   removeEmptyWorkspaceAfter( prevWS))
 	, ((mod4Mask .|. shiftMask, xK_Right), removeEmptyWorkspaceAfter( shiftToNext))
 	, ((mod4Mask .|. shiftMask, xK_Left),    removeEmptyWorkspaceAfter(shiftToPrev))
 
