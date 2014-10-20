@@ -46,6 +46,7 @@ autocmd GUIEnter * set visualbell t_vb=
 set laststatus=2
 set encoding=utf-8
 let g:Powerline_symbols = 'fancy'
+let g:airline_powerline_fonts = 1
 
 "remap leader to comma
 "let mapleader = ","
