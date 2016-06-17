@@ -26,12 +26,9 @@ noremap gp "+p
 set mouse=a
 
 
-set background=dark
-colorscheme badwolf
-syntax on
-set t_Co=256
-set nocompatible
 
+
+set nocompatible
 execute pathogen#infect()
 
 
@@ -79,3 +76,11 @@ let g:autoclose = 1
 
 
 set smartindent
+
+
+
+syntax on
+set t_Co=16
+let g:solarized_termcolors=16
+set background=dark
+colorscheme solarized

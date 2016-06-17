@@ -26,7 +26,7 @@ import qualified XMonad.StackSet as W
 
 
 conf = ewmh defaultConfig
-	{ terminal	= "gnome-terminal"
+	{ terminal	= "tabbed -c -u#073642 uxterm -into"
 	, modMask 	= mod4Mask
 	, borderWidth	= 1
 	, layoutHook= myLayout
@@ -55,24 +55,22 @@ conf = ewmh defaultConfig
 	, ((mod4Mask .|. mod1Mask,    xK_l    ), windowToScreen L False)
 
 	--  CycleWS stuff
-	, ((mod4Mask,               xK_Right),  removeEmptyWorkspaceAfter(nextWS))
-	, ((mod4Mask,               xK_Left),   removeEmptyWorkspaceAfter( prevWS))
-	, ((mod4Mask .|. shiftMask, xK_l),  removeEmptyWorkspaceAfter(nextWS))
-	, ((mod4Mask .|. shiftMask, xK_h),   removeEmptyWorkspaceAfter( prevWS))
+	, ((mod4Mask,               xK_Right), nextWS)-- removeEmptyWorkspaceAfter(nextWS))
+	, ((mod4Mask,              xK_Left),  prevWS)-- removeEmptyWorkspaceAfter( prevWS))
 	, ((mod4Mask .|. shiftMask, xK_Right), removeEmptyWorkspaceAfter( shiftToNext))
 	, ((mod4Mask .|. shiftMask, xK_Left),    removeEmptyWorkspaceAfter(shiftToPrev))
 
 	-- DynamicWorkspaces
 	, ((mod4Mask, xK_BackSpace), removeEmptyWorkspace)
-	, ((mod4Mask, xK_1), removeEmptyWorkspaceAfter(addWorkspace("1")))
-	, ((mod4Mask, xK_2), removeEmptyWorkspaceAfter(addWorkspace("2")))
-	, ((mod4Mask, xK_3), removeEmptyWorkspaceAfter(addWorkspace("3")))
-	, ((mod4Mask, xK_4), removeEmptyWorkspaceAfter(addWorkspace("4")))
-	, ((mod4Mask, xK_5), removeEmptyWorkspaceAfter(addWorkspace("5")))
-	, ((mod4Mask, xK_6), removeEmptyWorkspaceAfter(addWorkspace("6")))
-	, ((mod4Mask, xK_7), removeEmptyWorkspaceAfter(addWorkspace("7")))
-	, ((mod4Mask, xK_8), removeEmptyWorkspaceAfter(addWorkspace("8")))
-	, ((mod4Mask, xK_9), removeEmptyWorkspaceAfter(addWorkspace("9")))
+	{-, ((mod4Mask, xK_1), removeEmptyWorkspaceAfter(addWorkspace("1")))-}
+	{-, ((mod4Mask, xK_2), removeEmptyWorkspaceAfter(addWorkspace("2")))-}
+	{-, ((mod4Mask, xK_3), removeEmptyWorkspaceAfter(addWorkspace("3")))-}
+	{-, ((mod4Mask, xK_4), removeEmptyWorkspaceAfter(addWorkspace("4")))-}
+	{-, ((mod4Mask, xK_5), removeEmptyWorkspaceAfter(addWorkspace("5")))-}
+	{-, ((mod4Mask, xK_6), removeEmptyWorkspaceAfter(addWorkspace("6")))-}
+	{-, ((mod4Mask, xK_7), removeEmptyWorkspaceAfter(addWorkspace("7")))-}
+	{-, ((mod4Mask, xK_8), removeEmptyWorkspaceAfter(addWorkspace("8")))-}
+	{-, ((mod4Mask, xK_9), removeEmptyWorkspaceAfter(addWorkspace("9")))-}
 	, ((mod4Mask .|. shiftMask, xK_v      ), selectWorkspace defaultXPConfig)
 	{-, ((mod4Mask, xK_m                    ), withWorkspace defaultXPConfig (windows . W.shift))-}
 	{-, ((mod4Mask .|. shiftMask, xK_m      ), withWorkspace defaultXPConfig (windows . copy))-}
@@ -94,10 +92,12 @@ myLayout = smartBorders (avoidStruts(maximize (spiral ratio ||| autoMaster 1 (1/
 		ratio	= toRational (2/(1+sqrt(5)::Double)) 
 
 myStartupHook = do
-	spawnOnce "tint2"
-	spawnOnce "gnome-session"
+	{-spawnOnce "tint2"-}
+	{-spawnOnce "gnome-session"-}
+	spawnOnce "xmodmap /home/mittald/.xmodmaprc"
 	spawnOnce "volumeicon"
-	{-spawnOnce "compton"-}
+	spawnOnce "compton"
+	{-spawnOnce "gnome-panel"-}
 
 myFocusedBorderColor = "#d64937"
 
